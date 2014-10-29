@@ -11,7 +11,25 @@ public class SearchFilter {
 	private String gear;
 	private String mileage; 
 	private String price;
+	private String status;
+	private String approved;
+	private String postDate;
 	
+	public SearchFilter() {
+		super();
+		this.make = "";
+		this.makeYear = "";
+		this.registeredYear = "";
+		this.model = "";
+		this.category = "";
+		this.engineCapacity = "";
+		this.gear = "";
+		this.mileage = "";
+		this.price = "";
+		this.status = "";
+		this.approved = "";
+		this.postDate = "";
+	}
 	public String getMake() {
 		return make;
 	}
@@ -66,6 +84,24 @@ public class SearchFilter {
 	public void setPrice(String price) {
 		this.price = price;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String available) {
+		this.status = available;
+	}
+	public String getApproved() {
+		return approved;
+	}
+	public void setApproved(String approved) {
+		this.approved = approved;
+	}
+	public String getPostDate() {
+		return postDate;
+	}
+	public void setPostDate(String postDate) {
+		this.postDate = postDate;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -87,6 +123,12 @@ public class SearchFilter {
 		builder.append(mileage);
 		builder.append(", price=");
 		builder.append(price);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", approved=");
+		builder.append(approved);
+		builder.append(", postDate=");
+		builder.append(postDate);
 		builder.append("]");
 		return builder.toString();
 	}

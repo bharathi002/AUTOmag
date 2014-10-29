@@ -1,6 +1,7 @@
 package com.ntu.auto.magazine;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ntu.auto.magazine.dao.AutomobileDao;
+import com.ntu.auto.magazine.dao.AutomobileDaoImpl;
+import com.ntu.auto.magazine.model.Advertisement;
 
 /**
  * Servlet implementation class BuyAutomobileServlet
@@ -35,7 +40,11 @@ public class BuyAutomobileServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher  = request.getRequestDispatcher("buyAutomobiles.jsp");
+		AutomobileDao automobileDao = new AutomobileDaoImpl();
+		//List<Advertisement> advList = automobileDao.getAllAdvertisements();
+		List<Advertisement> advList = automobileDao.searchAdvertisements(null, false);
+		request.setAttribute("advList", advList);
+		RequestDispatcher dispatcher  = request.getRequestDispatcher("buyAutomobile.jsp");
 		dispatcher.forward(request, response);
 	}
 

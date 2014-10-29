@@ -1,7 +1,6 @@
 package com.ntu.auto.magazine;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,16 +14,16 @@ import com.ntu.auto.magazine.dao.AutomobileDaoImpl;
 import com.ntu.auto.magazine.model.Advertisement;
 
 /**
- * Servlet implementation class HomePageServlet
+ * Servlet implementation class ViewAutomobile
  */
-@WebServlet(name = "homePage", urlPatterns = { "/homePage" })
-public class HomePageServlet extends HttpServlet {
+@WebServlet(name = "viewAutomobile", urlPatterns = { "/viewAutomobile" })
+public class ViewAutomobile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomePageServlet() {
+    public ViewAutomobile() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,21 +32,18 @@ public class HomePageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("adminLogin")!=null){
-			request.getSession().removeAttribute("adminLogin");
-		}
-		AutomobileDao autoDao = new AutomobileDaoImpl();
-		List<Advertisement> advList = autoDao.getLatestAdvertisements();
-		request.setAttribute("advList", advList);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+		long advId = Long.valueOf(request.getParameter("advId")!=null ? request.getParameter("advId") : "-1" ).longValue();
+		AutomobileDao automobileDao = new AutomobileDaoImpl();
+		Advertisement adv = automobileDao.getAdvertisementById(advId);
+		request.setAttribute("adv", adv);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("viewAutomobile.jsp");
 		dispatcher.forward(request, response);
 	}
 

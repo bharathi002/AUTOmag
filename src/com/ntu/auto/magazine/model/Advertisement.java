@@ -1,7 +1,6 @@
 package com.ntu.auto.magazine.model;
 
 import java.io.InputStream;
-import java.sql.Blob;
 import java.util.Date;
 
 public class Advertisement {
@@ -31,6 +30,7 @@ public class Advertisement {
 	private int engineCapacity;
 	private String gear;
 	private int mileage;
+	private int available;
 	
 	public Advertisement() {
 		this.advId = 0;
@@ -58,6 +58,7 @@ public class Advertisement {
 		this.engineCapacity = 0;
 		this.gear = "";
 		this.mileage = 0;
+		this.available = 1;
 	}
 	
 	public long getAdvId() {
@@ -211,6 +212,14 @@ public class Advertisement {
 		this.mileage = mileage;
 	}
 	
+	public int getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(int available) {
+		this.available = available;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -264,6 +273,8 @@ public class Advertisement {
 		builder.append(gear);
 		builder.append(", mileage=");
 		builder.append(mileage);
+		builder.append(", available=");
+		builder.append(available);
 		builder.append("]");
 		return builder.toString();
 	}

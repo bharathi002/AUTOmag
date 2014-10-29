@@ -10,7 +10,7 @@ public class DataSourceUtil {
 	public static Connection getConnection(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/automag","root","ROOT");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/automag","root","root");
 		}catch(Exception e){
 			
 		}
